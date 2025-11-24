@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Understanding Recursion in Python",
+        "author": "Saba",
+        "likes": 120
+    },
+    {
+        "id": 2,
+        "title": "Mastering Flexbox in CSS",
+        "author": "Saba",
+        "likes": 95
+    },
+    {
+        "id": 3,
+        "title": "Introduction to Object-Oriented Programming",
+        "author": "Saba",
+        "likes": 87
+    },
+    {
+        "id": 4,
+        "title": "Getting Started with SQL Databases",
+        "author": "Saba",
+        "likes": 73
+    },
+    {
+        "id": 5,
+        "title": "Dark Psychology and Strategic Thinking",
+        "author": "Saba",
+        "likes": 142
+    },
+    {
+        "id": 6,
+        "title": "Stoicism: Lessons from Marcus Aurelius",
+        "author": "Saba",
+        "likes": 160
+    }
+]
