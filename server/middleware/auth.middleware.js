@@ -4,8 +4,9 @@ const jwt = require('jsonwebtoken');
 
 const allowedto = (...roles) => {
     return (req, res, next) => {
-        if (!roles.includes(req.user.roles))
-            return next(new AppError('You do not have persmission'), 401);
+        if (!roles.includes(req.user.role)) {
+            return next(new AppError('You do not have permission'), 401);
+        }
 
         next();
     };
@@ -14,7 +15,7 @@ const allowedto = (...roles) => {
 const protect = async (req, res, next) => {
     try {
         // 1. Check if token exists in cookies
-        const token = req.cookies?.it;
+        const token = req.cookies?.token;
 
         if (!token) {
             return next(new AppError('you are not registered', 401));

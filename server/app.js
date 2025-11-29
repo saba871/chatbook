@@ -3,20 +3,26 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
+const cookieParser = require('cookie-parser'); //
+
 const postRouter = require('./router/post.router');
 const globalErrorHandle = require('./controllers/error.coontroller');
 const authContext = require('./router/auth.router');
 
 dotenv.config();
 const app = express();
+
 app.use(
     cors({
         origin: 'http://localhost:5173',
         credentials: true,
     })
 );
+// process.env.CLIENT_URL
 
 app.use(express.json());
+app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
@@ -25,6 +31,8 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/api/posts', postRouter);
 app.use('/api/auth', authContext);
 
+app.use(express.static(path.join(__dirname, 'dist')));
+
 // global error handling
 app.use(globalErrorHandle);
 
@@ -32,7 +40,6 @@ mongoose
     .connect(process.env.DATABASE_URL)
     .then(() => {
         console.log('Connected to mongoDB');
-
         app.listen(process.env.PORT, () => {
             console.log(`Server is running on port ${process.env.PORT}`);
         });

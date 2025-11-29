@@ -20,7 +20,8 @@ const createSendCookie = (user, statusCode, res) => {
     const cookiesOptions = {
         maxAge: Number(process.env.COOKIE_EXPIRES || 7) * 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite: 'Strict',
+        sameSite: 'lax', // Dev: 'lax' ან 'strict'
+        secure: false, // Dev: false, Production: true
     };
 
     res.cookie('token', token, cookiesOptions);
