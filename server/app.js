@@ -1,5 +1,3 @@
-dotenv.config();
-
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
@@ -11,6 +9,7 @@ const cookieParser = require('cookie-parser'); //
 const postRouter = require('./router/post.router');
 const globalErrorHandle = require('./controllers/error.coontroller');
 const authContext = require('./router/auth.router');
+dotenv.config();
 
 const app = express();
 
