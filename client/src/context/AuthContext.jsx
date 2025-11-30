@@ -4,8 +4,8 @@ import { data, useNavigate } from 'react-router';
 export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
-// const API_URL = 'http://localhost:3000/api';
-const API_URL = import.meta.env.VITE_SERVER_URL;
+const API_URL = 'http://localhost:3000/api';
+// const API_URL = import.meta.env.VITE_SERVER_URL;
 console.log(import.meta.env.VITE_SERVER_URL);
 // http://localhost:3000/api
 

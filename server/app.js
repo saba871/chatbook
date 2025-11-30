@@ -1,6 +1,5 @@
 const express = require('express');
 const dotenv = require('dotenv');
-dotenv.config();
 
 const morgan = require('morgan');
 const mongoose = require('mongoose');
@@ -12,10 +11,11 @@ const postRouter = require('./router/post.router');
 const globalErrorHandle = require('./controllers/error.coontroller');
 const authContext = require('./router/auth.router');
 
+dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: process.env.CLIENT_URL,  // frontend-ის URL
+    origin: 'http://localhost:5173',  // frontend-ის URL
     credentials: true,
 }));
 
