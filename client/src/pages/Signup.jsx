@@ -1,46 +1,46 @@
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from "../context/AuthContext";
 
 const SignUp = () => {
-    const { signup } = useAuth();
+  const { signup } = useAuth();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        const formObj = {
-            fullname: e.target.fullname.value,
-            email: e.target.email.value,
-            password: e.target.password.value,
-        };
-
-        signup(formObj);
+    const formObj = {
+      fullname: e.target.fullname.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <h1>Sign Up</h1>
+    signup(formObj);
+  };
 
-            <input
-                type="text"
-                name="fullname"
-                placeholder="please enter your Fullname"
-                required
-            />
-            <input
-                type="email"
-                name="email"
-                placeholder="please enter your Email"
-                required
-            />
-            <input
-                type="password"
-                name="password"
-                placeholder="please enter your Password"
-                required
-            />
+  return (
+    <form onSubmit={handleSubmit}>
+      <h1>Sign Up</h1>
 
-            <button>Signup</button>
-        </form>
-    );
+      <input
+        type="text"
+        name="fullname"
+        placeholder="please enter your Fullname"
+        required
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="please enter your Email"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="please enter your Password"
+        required
+      />
+
+      <button>Signup</button>
+    </form>
+  );
 };
 
 export default SignUp;

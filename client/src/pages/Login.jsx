@@ -1,39 +1,39 @@
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from "../context/AuthContext";
 
 const LogIn = () => {
-    const { login } = useAuth();
+  const { login } = useAuth();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        const formObj = {
-            email: e.target.email.value,
-            password: e.target.password.value,
-        };
-
-        await login(formObj);
+    const formObj = {
+      email: e.target.email.value,
+      password: e.target.password.value,
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <h1>logIn</h1>
+    await login(formObj);
+  };
 
-            <input
-                type="email"
-                name="email"
-                placeholder="please enter your Email"
-                required
-            />
-            <input
-                type="password"
-                name="password"
-                placeholder="please enter your Password"
-                required
-            />
+  return (
+    <form onSubmit={handleSubmit}>
+      <h1>logIn</h1>
 
-            <button>LogIn</button>
-        </form>
-    );
+      <input
+        type="email"
+        name="email"
+        placeholder="please enter your Email"
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="please enter your Password"
+        required
+      />
+
+      <button>LogIn</button>
+    </form>
+  );
 };
 
 export default LogIn;

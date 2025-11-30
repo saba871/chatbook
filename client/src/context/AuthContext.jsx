@@ -1,15 +1,17 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router';
+import { data, useNavigate } from 'react-router';
 
 export const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
-const API_URL = 'http://localhost:3000/api';
+// const API_URL = 'http://localhost:3000/api';
+const API_URL = import.meta.env.VITE_SERVER_URL;
+console.log(import.meta.env.VITE_SERVER_URL);
+// http://localhost:3000/api
 
+//
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-
-    console.log(import.meta.env.VITE_SERVER_URL);
 
     const navigate = useNavigate();
 
@@ -22,11 +24,11 @@ const AuthProvider = ({ children }) => {
 
             const result = await res.json();
 
-            if (res.ok && result.data?.user) {
-                setUser(result.data.user);
-            } else {
-                setUser(null);
-            }
+            setUser(result.data.user);
+            // if (res.ok && result.data?.user) {
+            // } else {
+            //     setUser(null);
+            // }
         } catch (err) {
             console.log(err);
         }
