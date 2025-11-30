@@ -1,3 +1,5 @@
+dotenv.config();
+
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
@@ -10,11 +12,10 @@ const postRouter = require('./router/post.router');
 const globalErrorHandle = require('./controllers/error.coontroller');
 const authContext = require('./router/auth.router');
 
-dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: process.env.CLIENT_URL,
+    origin: process.env.CLIENT_URL,  // frontend-ის URL
     credentials: true,
 }));
 
