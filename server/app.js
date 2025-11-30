@@ -1,5 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
+dotenv.config();
+
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -9,7 +11,6 @@ const cookieParser = require('cookie-parser'); //
 const postRouter = require('./router/post.router');
 const globalErrorHandle = require('./controllers/error.coontroller');
 const authContext = require('./router/auth.router');
-dotenv.config();
 
 const app = express();
 
