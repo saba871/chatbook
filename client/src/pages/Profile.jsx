@@ -25,7 +25,7 @@ const Profile = () => {
                 <h2>My info</h2>
                 <p>email: {user.email}</p>
                 <p>fullname: {user.fullname}</p>
-                <p>Verified: {user.isVerified ? 'yes' : 'no'}</p>
+                <p>Verified: {user.isVerified ? 'no' : 'yes'}</p>
             </section>
 
             <section>

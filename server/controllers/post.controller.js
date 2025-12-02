@@ -3,9 +3,10 @@ const User = require('../models/user.model');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
-// simple function
+//
 const formatMongoQuery = (query) => {
     const mongoQuery = {};
+
     for (const [key, value] of Object.entries(query)) {
         const match = key.match(/^(.+)\[(gte|gt|lte|lt)\]$/);
         if (match) {
@@ -65,6 +66,8 @@ const addPost = catchAsync(async (req, res) => {
         discription,
     } = req.body;
 
+    const { file } = req;
+
     const user = await User.findById(userId);
 
     if (!user) {
@@ -81,6 +84,7 @@ const addPost = catchAsync(async (req, res) => {
         fullname: user.fullname,
         tags,
         userId: user._id,
+        postImg: file ? file.filename : null,
     });
 
     return res.status(201).json({

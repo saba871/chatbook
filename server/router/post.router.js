@@ -7,6 +7,7 @@ const {
     updatePost,
 } = require('../controllers/post.controller');
 const { protect, allowedto } = require('../middleware/auth.middleware');
+const upload = require('../utils/uploadImage');
 const postRouter = express.Router();
 
 // get all posts
