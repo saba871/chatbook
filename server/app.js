@@ -35,6 +35,7 @@ app.use('/api/posts', postRouter);
 app.use('/api/auth', authContext);
 
 app.use(express.static(path.join(__dirname, 'dist')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // global error handling
 app.use(globalErrorHandle);

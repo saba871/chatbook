@@ -24,7 +24,11 @@ const createSendCookie = (user, statusCode, res) => {
         secure: false, // Dev: false, Production: true
     };
 
-    res.cookie('token', token, cookiesOptions);
+    res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production', // Dev-ში false
+        sameSite: 'lax',
+    });
     user.password = undefined;
 
     res.status(statusCode).json({

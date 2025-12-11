@@ -55,24 +55,18 @@ const getPost = catchAsync(async (req, res, next) => {
 
 // add Post
 const addPost = catchAsync(async (req, res) => {
+    const user = req.user;
+
     const {
         title,
         author,
         content,
         likesCount,
         tags,
-        userId,
         profileImage,
         discription,
     } = req.body;
-
     const { file } = req;
-
-    const user = await User.findById(userId);
-
-    if (!user) {
-        return res.status(404).json({ message: 'User not found' });
-    }
 
     const newPost = await Post.create({
         title,
@@ -82,15 +76,12 @@ const addPost = catchAsync(async (req, res) => {
         likesCount,
         profileImage,
         fullname: user.fullname,
-        tags,
         userId: user._id,
+        tags,
         postImg: file ? file.filename : null,
     });
 
-    return res.status(201).json({
-        status: 'success',
-        data: { post: newPost },
-    });
+    res.status(201).json({ status: 'success', data: { post: newPost } });
 });
 
 // delete post

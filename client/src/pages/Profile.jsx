@@ -9,14 +9,25 @@ const Profile = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const formObj = {
-            title: e.target.title.value,
-            content: e.target.content.value,
-            userId: user._id,
-            fullname: user.fullname,
-        };
+        // const formObj = {
+        //     title: e.target.title.value,
+        //     content: e.target.content.value,
+        //     userId: user._id,
+        //     fullname: user.fullname,
+        // };
 
-        addPost(formObj);
+        const formData = new FormData();
+        formData.append('title', e.target.title.value);
+        formData.append('content', e.target.content.value);
+        const file = e.target.postImg.files[0];
+
+        if (file) {
+            formData.append('postImg', file);
+        }
+
+        addPost(formData);
+
+        e.target.reset();
     };
 
     return (
@@ -34,7 +45,12 @@ const Profile = () => {
 
             <section>
                 <h2>Add post</h2>
-                <form onSubmit={handleSubmit}>
+                <form
+                    encType="multipart/form-data"
+                    // action={'http://localhost:3000' + '/api/posts'}
+                    // method="POST"
+                    onSubmit={handleSubmit}
+                >
                     <input
                         type="text"
                         name="title"
@@ -47,6 +63,7 @@ const Profile = () => {
                         placeholder="content"
                         required
                     />
+                    <input type="file" name="postImg" />
                     <button>submit</button>
                 </form>
             </section>

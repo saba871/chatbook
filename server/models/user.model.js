@@ -48,16 +48,23 @@ userSchema.pre('save', async function (next) {
     next();
 });
 
-// password cheking
-userSchema.methods.comparePassword = async (candidate, password) => {
-    return await bcrybt.compare(candidate, password);
+// Hash password before saving
+userSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) return next();
+    this.password = await bcrypt.hash(this.password, 12);
+    next();
+});
+
+// Compare password
+userSchema.methods.comparePassword = async function (candidatePassword) {
+    return await bcrypt.compare(candidatePassword, this.password);
 };
 
+// Create verification code
 userSchema.methods.createVerificationCode = function () {
     const code = crypto.randomBytes(12).toString('hex');
     this.verificationCode = code;
     return code;
 };
 
-const User = mongoose.model('User', userSchema);
-module.exports = User;
+module.exports = mongoose.model('User', userSchema);

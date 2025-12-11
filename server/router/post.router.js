@@ -15,10 +15,10 @@ postRouter.get('/', getPosts);
 // get post by ID
 postRouter.get('/:id', getPost);
 // create post
-postRouter.post('/', addPost); //
+postRouter.post('/', protect, upload.single('postImg'), addPost); //
 // delete post
-postRouter.delete('/:id', deletePost);
+postRouter.delete('/:id', protect, deletePost);
 // update post
-postRouter.patch('/:id', updatePost);
+postRouter.patch('/:id', protect, updatePost);
 
 module.exports = postRouter;

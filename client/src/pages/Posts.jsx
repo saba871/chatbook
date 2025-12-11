@@ -84,7 +84,14 @@ const Posts = ({ onlyMine = false }) => {
                                 <>
                                     <h3>{post.title}</h3>
                                     <p>Content: {post.content}</p>
-
+                                    <img
+                                        width={400}
+                                        src={
+                                            'http://localhost:3000' +
+                                            `/uploads/${post.postImg}`
+                                        }
+                                    />{' '}
+                                    <br />
                                     {user &&
                                         post.userId === user._id &&
                                         onlyMine && (
